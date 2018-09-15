@@ -1,0 +1,45 @@
+<h3>RUTAS PUBLICAS</h3>
+<div>
+	<label>Actividad </label>
+	<select (change)="onActivity($event)">	
+		<option *ngFor="let act of activities" [ngValue]="act.name">{{act.name}}</option>
+	</select>
+	<label> | </label>
+	<label>Formato </label>
+	<select (change)="onFormat($event)">
+		<option value="1">Circular</option>
+		<option value="0">Solo ida</option>
+	</select>
+	<label> | </label>
+	<label>Dificultad </label>
+	<select (change)="onDifficulty($event)">	
+		<option *ngFor="let dif of difficulties" [ngValue]="dif.difficulty">{{dif.difficulty}}</option>
+	</select>
+</div>
+<br>
+<table>
+	<thead>
+	<tr>
+		<th><button (click)="orderId()">ID</button></th>
+		<th><button (click)="orderName()">NOMBRE</button></th>
+		<th><button (click)="orderLong()">DISTANCIA</button></th>
+		<th><button (click)="orderDiff()">DIFICULTAD</button></th>
+		<th><button (click)="orderRate()">PROMEDIO</button></th>
+		<th><button (click)="orderCount()">REALIZADA POR</button></th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr *ngFor="let rut of routes">
+		<td>
+			<a routerLink="/detailRoute/{{rut.id}}">{{rut.id}}</a>
+		</td>
+		<td>{{rut.name}}</td>
+		<td>{{rut.length}}</td>
+		<td>{{rut.difficulty.difficulty}}</td>
+		<td>{{rut.rateAvg}}</td>
+		<td>{{rut.doneByCount}}</td>
+	</tr>
+	</tbody>
+</table>
+<br>
+<button type="button" (click)="goBack()">Volver</button>

@@ -1,0 +1,19 @@
+<div class="container">
+<form ngNativeValidate name="miForm" (ngSubmit)="onSubmit()">
+		<div class="form-group">
+			<label>Usuario: </label>
+			<input class="form-control" type="text" name="user.userName" placeholder="Usuario" [(ngModel)]="user.userName" required />
+		</div>
+		<div class="form-group">
+			<label>Contraseña: </label>
+			<input class="form-control" type="password" name="user.password" [(ngModel)]="user.password" required />
+		</div>
+		<div class="form-group">
+			<button type="submit" class="btn btn-primary">Entrar</button>
+		</div>
+	</form>
+	<div class="form-group">
+		<button type="button" class="btn btn-success" (click)="goBack()">Volver</button>
+	</div>
+	<app-mapa></app-mapa>
+</div>

@@ -1,0 +1,46 @@
+<div class="container">
+<form ngNativeValidate name="miForm" (ngSubmit)="onSubmit()">
+		<div class="form-group">
+			<label>DNI: </label>
+			<input class="form-control" type="number" name="user.dni" placeholder="123456789" [(ngModel)]="user.dni" required />
+		</div>
+		<div class="form-group">
+			<label>Usuario: </label>
+			<input class="form-control" type="text" name="user.userName" placeholder="usuario" [(ngModel)]="user.userName" required />
+		</div>
+		<div class="form-group">
+			<label>Nombre: </label>
+			<input class="form-control" type="text" name="user.name" placeholder="nombre" [(ngModel)]="user.name" required />
+		</div>
+		<div class="form-group">
+			<label>Apellido: </label>
+			<input class="form-control" type="text" name="user.lastName" placeholder="apellido" [(ngModel)]="user.lastName" required />
+		</div>
+		<div class="form-group">
+			<label>Domicilio: </label>
+			<input class="form-control" type="text" name="user.address" placeholder="domicilio" [(ngModel)]="user.address" required />
+		</div>
+		<div class="form-group">
+			<label>Genero: </label>
+			<select class="form-control" name="user.gender" placeholder="genero" [(ngModel)]="user.gender" required >
+				<option value="masculino">Masculino</option>
+				<option value="femenino">Femenino</option>
+			</select>
+			<br>
+		</div>
+		<div>
+			<label>Fecha de nacimiento: </label>
+			<input class="form-control" type="date" name="user.birthDate" [(ngModel)]="user.birthDate" required>
+		</div>
+		<div class="form-group">
+			<label>Email: </label>
+			<input class="form-control" type="text" name="user.email" placeholder="email" [(ngModel)]="user.email" required />
+		</div>
+		<div class="form-group">
+			<button type="submit" class="btn btn-primary">Guardar</button>
+		</div>
+	</form>
+	<div class="form-group">
+		<button type="button" class="btn btn-success" (click)="goBack()">Volver</button>
+	</div>
+</div>

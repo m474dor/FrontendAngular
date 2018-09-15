@@ -1,0 +1,70 @@
+<h3>NUEVA RUTA</h3>
+<div class="container">
+<form ngNativeValidate name="miForm" (ngSubmit)="onSubmit()">
+		<div class="form-group">
+			<label>Nombre: </label>
+			<input class="form-control" type="text" name="route.name" placeholder="nombre" [(ngModel)]="route.name" required />
+		</div>
+		<div class="form-group">
+			<label>Descripcion: </label>
+			<input class="form-control" type="text" name="route.description" placeholder="apellido" [(ngModel)]="route.description" required />
+		</div>
+		<div class="form-group">
+			<label>Privacidad: </label>
+			<select class="form-control" name="route.isPublic" placeholder="genero" [(ngModel)]="route.isPublic" required >
+				<option value="true">Publica</option>
+				<option value="false">Privada</option>
+			</select>
+			<br>
+		</div>
+		<div class="form-group" *ngIf="!modificada">
+			<label>Recorrido: </label>
+			<input class="form-control" type="file" name="selectedFile" [(ngModel)]="selectedFile" (change)="getKMLDetails($event)" required />
+		</div>
+		<div class="form-group" *ngIf="!modificada">
+			<label>Formato: </label>
+			<select class="form-control" name="route.isCircular" placeholder="formato" [(ngModel)]="route.isCircular" required >
+				<option value="true">Circular</option>
+				<option value="false">Solo ida</option>
+			</select>
+			<br>
+		</div>
+		<div class="form-group" *ngIf="!modificada">
+			<label>Distancia: </label>
+			<input class="form-control" type="number" name="route.length" [(ngModel)]="route.length" required> metros
+		</div>
+		<div class="form-group">
+			<label>Dificultad: </label>
+			<select class="form-control" name="route.difficulty" placeholder="dificultad" [(ngModel)]="route.difficulty" required >
+				<option *ngFor="let dif of difficulties" [ngValue]="dif" ngSelected="route.difficulty.name==dif.name">{{dif.difficulty}}</option>
+			</select>
+			<br>
+		</div>
+		<div class="form-group" *ngIf="!modificada">
+			<label>Actividad: </label>
+			<select class="form-control" name="route.activity" placeholder="actividad" [(ngModel)]="route.activity" required >
+				<option *ngFor="let ac of activities" [ngValue]="ac" ngSelected="route.activity.name==ac.name">
+				{{ac.name}}</option>
+			</select>
+			<br>
+		</div>
+		<div class="form-group" *ngIf="!modificada">
+			<label>Tiempo estimado: </label>
+			<input class="form-control" type="number" name="route.duration" [(ngModel)]="route.duration" required> minutos
+		</div>
+		<div class="form-group" *ngIf="!modificada">
+			<label>Fecha de realizacion: </label>
+			<input class="form-control" type="date" name="route.date" [(ngModel)]="route.date" selected="route.date" required>
+		</div><!--
+		<div class="form-group">
+			<label>Fotos: </label>
+			<input class="form-control" type="file" (change)="getFileDetails($event)" multiple required />
+		</div>-->
+		<div class="form-group">
+			<button type="submit" class="btn btn-primary">Guardar</button>
+		</div>
+	</form>
+	<div class="form-group">
+		<button type="button" class="btn btn-success" (click)="goBack()">Volver</button>
+	</div>
+</div>

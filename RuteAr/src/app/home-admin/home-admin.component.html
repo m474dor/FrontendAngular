@@ -1,0 +1,47 @@
+<table>
+	<th><h2>Lista de usuarios</h2></th>
+	<th><h2>Lista de actividades</h2></th>
+	<tr>
+		<td>
+			<ul>
+				<button (click)="sortByNameASC()"></button>
+				<button (click)="sortByNameDES()"></button>
+				<button (click)="sortByIdASC()"></button>
+				<button (click)="sortByIdDES()"></button>
+			</ul>
+			<ul class="users">
+				<li *ngFor="let user of users">
+				<a routerLink="/detail/{{user.id}}">
+				<span class="badge">{{user.id}} - {{user.name}} - {{user.lastName}} </span>
+				</a>
+				<button type="button" (click)="blockUser(user)" *ngIf="user.isEnable">Bloquear</button>
+				<button type="button" (click)="blockUser(user)" *ngIf="!user.isEnable">Desbloquear</button>
+				</li>
+			</ul>
+		</td>
+
+		<td>
+			<ul class="activities">
+				<li *ngFor="let act of activities">
+				<span class="badge">{{act.id}} - </span>
+				<input [(ngModel)]="act.name">				
+				<button type="button" (click)="updateActivity(act)">Actualizar
+				</button>
+				<button type="button" (click)="deleteActivity(act)">Eliminar
+				</button>
+				</li>
+				<li>
+					<form ngNativeValidate name="miForm" (ngSubmit)="onSubmit()">
+						<div class="form-group">
+						<label>Nueva actividad: </label>
+						<input class="form-control" type="text" name="activity.name" [(ngModel)]="activity.name" required />
+						</div>
+						<div class="form-group">
+						<button type="submit" class="btn btn-primary">Agregar</button>
+						</div>
+					</form>
+				</li>
+			</ul>
+		</td>
+	</tr>
+</table>
