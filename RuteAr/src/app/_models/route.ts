@@ -16,5 +16,5 @@ export class Route {
 	difficulty: Difficulty;
 	activity: Activity;
 	owner: User;
-	points: File;
+	points: string;
 }
