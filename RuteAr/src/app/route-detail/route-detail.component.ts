@@ -3,6 +3,7 @@ import { NoteService } from '../_services/note.service';
 import { RouteService } from '../_services/route.service';
 import { ActivityService } from '../_services/activity.service';
 import { DoneByService } from '../_services/done-by.service';
+import { MapPointService } from '../_services/map-point.service';
 import { MessageService } from '../_services/message.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
@@ -33,6 +34,7 @@ export class RouteDetailComponent implements OnInit {
   ratings: Rating[] = [];
   usuarios: User[] = [];
   didit: boolean;
+  kml: string;
 
   constructor(
   	private noteService: NoteService,
@@ -40,6 +42,7 @@ export class RouteDetailComponent implements OnInit {
   	private messageService: MessageService,
     private ratingService: RatingService,
     private doneByService: DoneByService,
+    private mapPointService: MapPointService,
   	private activityService: ActivityService,
   	private routeAct: ActivatedRoute,  
   	private router: Router, 	
@@ -100,7 +103,7 @@ export class RouteDetailComponent implements OnInit {
   }
 
   getRoute(): void{
-  	this.routeService.getById(this.id).subscribe(route => {this.route=route;this.getNotes()});
+  	this.routeService.getById(this.id).subscribe(route => {this.route=route;this.getNotes();this.getKml()});
   }
 
   getNotes(): void{
@@ -115,6 +118,15 @@ export class RouteDetailComponent implements OnInit {
 
   getUsers(): void{
     this.doneByService.getUsers(this.id).subscribe(usuarios => {this.usuarios = usuarios;this.updateRating();});
+  }
+
+  getKml(): void {
+    let thefile = {};
+    this.mapPointService.getFile(this.id).subscribe(
+      data => thefile = new Blob([data]),
+      error => console.log("Error downloading the file."),
+      () => console.log('Completed file download.'));
+    this.kml = window.URL.createObjectURL(thefile);
   }
 
   updateRating(): void{

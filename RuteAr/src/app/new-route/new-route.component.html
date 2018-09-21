@@ -19,7 +19,7 @@
 		</div>
 		<div class="form-group" *ngIf="!modificada">
 			<label>Recorrido: </label>
-			<input class="form-control" type="file" name="selectedFile" [(ngModel)]="selectedFile" (change)="getKMLDetails($event)" required />
+			<input class="form-control" type="file" name="selectedFile" (change)="getKMLDetails($event)" required />
 		</div>
 		<div class="form-group" *ngIf="!modificada">
 			<label>Formato: </label>

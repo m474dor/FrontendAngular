@@ -49,7 +49,7 @@ export class NewRouteComponent implements OnInit {
     if(this.aux!=null){
       this.route=this.aux;
       localStorage.removeItem('currentRoute');
-      this.photoService.getPhotos(this.route.id).subscribe(photos => this.photos = photos);
+      //this.photoService.getPhotos(this.route.id).subscribe(photos => this.photos = photos);
     }
   }
 
@@ -66,26 +66,34 @@ export class NewRouteComponent implements OnInit {
 
   onSubmit() {
   	this.route.owner=this.currentUser;
+    this.route.points="ninguno";
   	if(this.route.id!=null){
       this.routeService.update(this.route).subscribe(route => {
-        this.route = route;
-        this.photoService.update(this.photos,this.route.id).subscribe(
+        console.log(route);
+        this.mapPointService.register(this.selectedFile,this.route.id,this.selectedFile.name).subscribe(
+            data => this.router.navigate(['homeUser']));
+
+        /*this.photoService.update(this.photos,this.route.id).subscribe(
           data => {if(this.modificada) this.router.navigate(['homeUser']);
           });
         if(!this.modificada){
-          this.mapPointService.update().subscribe(
+          //this.mapPointService.update().subscribe(
             data => this.router.navigate(['homeUser']));
-        }
+        }*/
       });
+      
     }else{
     	this.route.doneByCount=0;
     	this.route.rateAvg=0;
       this.routeService.register(this.route).subscribe(route => {
-        this.route = route;
-        this.photoService.register(this.photos,this.route.id).subscribe();
+        console.log(route);
+        this.mapPointService.register(this.selectedFile,route.id,this.selectedFile.name).subscribe(
+            data => this.router.navigate(['homeUser']));
+        /*this.photoService.register(this.photos,this.route.id).subscribe();
         this.mapPointService.register().subscribe(
-          data => this.router.navigate(['homeUser']));
+          data => this.router.navigate(['homeUser']));*/
       });
+      
     }
   }
 

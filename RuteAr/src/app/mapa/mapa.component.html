@@ -1,5 +1,6 @@
 <h3>My Google Maps</h3>
 <agm-map [latitude]="lat" [longitude]="lng">
   <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-  <agm-kml-layer url="https://developers.google.com/maps/documentation/javascript/examples/kml/westcampus.kml"></agm-kml-layer>
+  <!--<agm-kml-layer url="https://developers.google.com/maps/documentation/javascript/examples/kml/westcampus.kml"></agm-kml-layer>-->
+  <agm-kml-layer url={{this.url}}></agm-kml-layer>
 </agm-map>

@@ -19,21 +19,22 @@ private URL: string = url+'rest/kml';
   constructor(private messageService: MessageService,
     private http: HttpClient) { }
 
-  getPhotos(id: number):Observable<Photo[]> {
-    this.messageService.add('PhotoService: fetched photos');
-    return this.http.get<Photo[]>(this.URL+'/'+id).pipe(
+  getFile(id: number):Observable<File> {
+    this.messageService.add('KMLService: fetched KML');
+    return this.http.get<any>(this.URL+'/'+id).pipe(
       catchError(this.handleError('getAll', []))
     );
   }
 
-  register(photos: Photo[], id: number):Observable<Response> {
-    return this.http.post(this.URL+'/'+id, photos,httpOptions).pipe(
+
+  register(file: File, id: number, fileDetail: string):Observable<Response> {
+    return this.http.post(this.URL+'/'+id+'/'+fileDetail, file,httpOptions).pipe(
       catchError(this.handleError<any>('register'))
     );
   }
 
-  update(photos: Photo[], id: number):Observable<Response> {
-    return this.http.put(this.URL+'/'+id, photos,httpOptions).pipe(
+  update(file: File, id: number):Observable<Response> {
+    return this.http.put(this.URL+'/'+id, file,httpOptions).pipe(
       catchError(this.handleError<any>('update'))
     );
   }
