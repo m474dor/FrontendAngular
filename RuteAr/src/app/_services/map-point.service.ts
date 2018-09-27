@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Photo } from '../_models/photo';
+import { Mappoint } from '../_models/mappoint';
 import { MessageService } from './message.service';
 import { url } from '../page-url';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
@@ -19,10 +19,10 @@ private URL: string = url+'rest/kml';
   constructor(private messageService: MessageService,
     private http: HttpClient) { }
 
-  getFile(id: number):Observable<File> {
+  getFile(id: number):Observable<Mappoint[]> {
     this.messageService.add('KMLService: fetched KML');
-    return this.http.get<any>(this.URL+'/'+id).pipe(
-      catchError(this.handleError('getAll', []))
+    return this.http.get(this.URL+'/'+id).pipe(
+      catchError(this.handleError<any>('getAll'))
     );
   }
 
@@ -40,7 +40,7 @@ private URL: string = url+'rest/kml';
   }
 
   delete(id: number):Observable<Response> {
-    return this.http.delete(this.URL+'/'+id,httpOptions).pipe(
+    return this.http.delete(this.URL+'/delete/'+id,httpOptions).pipe(
       catchError(this.handleError<any>('delete'))
     );
   }

@@ -19,7 +19,7 @@
 		</div>
 		<div class="form-group" *ngIf="!modificada">
 			<label>Recorrido: </label>
-			<input class="form-control" type="file" name="selectedFile" (change)="getKMLDetails($event)" required />
+			<input class="form-control" type="file" name="selectedFile" (change)="getKMLDetails($event)" accept=".kml" required />
 		</div>
 		<div class="form-group" *ngIf="!modificada">
 			<label>Formato: </label>
@@ -54,16 +54,17 @@
 		</div>
 		<div class="form-group" *ngIf="!modificada">
 			<label>Fecha de realizacion: </label>
-			<input class="form-control" type="date" name="route.date" [(ngModel)]="route.date" selected="route.date" required>
-		</div><!--
+			<input class="form-control" type="date" name="route.date" [(ngModel)]="route.date" selected="route.date | date: 'dd/MM/yyyy'" required>
+		</div>
 		<div class="form-group">
 			<label>Fotos: </label>
-			<input class="form-control" type="file" (change)="getFileDetails($event)" multiple required />
-		</div>-->
+			<input class="form-control" type="file" (change)="getFileDetails($event)" accept="image/jpeg" multiple required />
+		</div>
 		<div class="form-group">
 			<button type="submit" class="btn btn-primary">Guardar</button>
 		</div>
 	</form>
+
 	<div class="form-group">
 		<button type="button" class="btn btn-success" (click)="goBack()">Volver</button>
 	</div>

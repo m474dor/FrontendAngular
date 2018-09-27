@@ -1,25 +1,44 @@
 <table>
-	<th><h2>Lista de usuarios</h2></th>
-	<th><h2>Lista de actividades</h2></th>
+	<thead>
+		<tr>
+			<th><h3>Lista de usuarios</h3></th>
+			<th><h3>Lista de actividades</h3></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+				<table>
+	<thead>
 	<tr>
+		<th><button (click)="sortById()">ID</button></th>
+		<th><button (click)="sortByName()">NOMBRE</button></th>
+		<th>APELLIDO</th>
+		<th>USERNAME</th>
+		<th>BLOQUEAR?</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr *ngFor="let user of users">
 		<td>
-			<ul>
-				<button (click)="sortByNameASC()"></button>
-				<button (click)="sortByNameDES()"></button>
-				<button (click)="sortByIdASC()"></button>
-				<button (click)="sortByIdDES()"></button>
-			</ul>
-			<ul class="users">
-				<li *ngFor="let user of users">
-				<a routerLink="/detail/{{user.id}}">
-				<span class="badge">{{user.id}} - {{user.name}} - {{user.lastName}} </span>
-				</a>
-				<button type="button" (click)="blockUser(user)" *ngIf="user.isEnable">Bloquear</button>
-				<button type="button" (click)="blockUser(user)" *ngIf="!user.isEnable">Desbloquear</button>
-				</li>
-			</ul>
+			<a routerLink="/detail/{{user.id}}">
+				{{user.id}}
+			</a>
 		</td>
-
+		<td>{{user.name}}</td>
+		<td>{{user.lastName}}</td>
+		<td>{{user.userName}}</td>
+		<td>
+			<button type="button" (click)="blockUser(user)" *ngIf="user.isEnable">Bloquear</button>
+			<button type="button" (click)="blockUser(user)" *ngIf="!user.isEnable">Desbloquear</button>
+		</td>
+	</tr>
+	</tbody>
+</table>
+			</td>
+			<td>
+				<table>
+	<tr>
 		<td>
 			<ul class="activities">
 				<li *ngFor="let act of activities">
@@ -45,3 +64,9 @@
 		</td>
 	</tr>
 </table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+

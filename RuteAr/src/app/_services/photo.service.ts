@@ -19,15 +19,22 @@ private URL: string = url+'rest/fotos';
   constructor(private messageService: MessageService,
     private http: HttpClient) { }
 
-  getPhotos(id: number):Observable<Photo[]> {
-    this.messageService.add('PhotoService: fetched photos');
-    return this.http.get<Photo[]>(this.URL+'/'+id).pipe(
-      catchError(this.handleError('getAll', []))
+  getPhotosClass(id: number):Observable<Photo[]> {
+    this.messageService.add('PhotoService: fetched photos class');
+    return this.http.get<Photo[]>(this.URL+'/list/'+id).pipe(
+      catchError(this.handleError('getPhotosClass', []))
     );
   }
 
-  register(photos: Photo[], id: number):Observable<Response> {
-    return this.http.post(this.URL+'/'+id, photos,httpOptions).pipe(
+  getPhotos(id: number):Observable<Blob> {
+    this.messageService.add('PhotoService: fetched photos');
+    return this.http.get(this.URL+'/'+id, {responseType: 'blob'}).pipe(
+      catchError(this.handleError<any>('getPhotos'))
+    );
+  }
+
+  register(photos: Blob, id: number, fileDetail: string):Observable<Response> {
+    return this.http.post(this.URL+'/'+id+'/'+fileDetail, photos,httpOptions).pipe(
       catchError(this.handleError<any>('register'))
     );
   }
@@ -39,7 +46,7 @@ private URL: string = url+'rest/fotos';
   }
 
   delete(id: number):Observable<Response> {
-    return this.http.delete(this.URL+'/'+id,httpOptions).pipe(
+    return this.http.delete(this.URL+'/delete/'+id,httpOptions).pipe(
       catchError(this.handleError<any>('delete'))
     );
   }

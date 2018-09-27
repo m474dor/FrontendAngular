@@ -15,7 +15,9 @@ export class HomeAdminComponent implements OnInit {
 	users: User[] = [];
   selectedActivity: Activity;
   activities: Activity[] = [];
-  activity: Activity = new Activity();
+  activity: Activity = new Activity;
+  sortId: boolean = false;
+  sortName: boolean = false;
 
   constructor(private userService: UserService,
     private activityService: ActivityService,
@@ -59,32 +61,32 @@ export class HomeAdminComponent implements OnInit {
     this.activityService.delete(this.selectedActivity.id).subscribe(data => window.location.reload(true));
   }
 
-  sortByNameASC():void{
-    this.users.sort((a,b):number => {
+  sortByName():void{
+    this.sortName=!this.sortName;
+    if(this.sortName)
+      this.users.sort((a,b):number => {
       if(a.name<b.name) return -1;
       if(a.name>b.name) return 1;
       return 0;
     });
-  }
-
-  sortByNameDES():void{
-    this.users.sort((a,b):number => {
+    else
+      this.users.sort((a,b):number => {
       if(a.name>b.name) return -1;
       if(a.name<b.name) return 1;
       return 0;
     });
   }
 
-  sortByIdASC():void{
-    this.users.sort((a,b):number => {
+  sortById():void{
+    this.sortId=!this.sortId;
+    if(this.sortId)
+      this.users.sort((a,b):number => {
       if(a.id<b.id) return -1;
       if(a.id>b.id) return 1;
       return 0;
     });
-  }
-
-  sortByIdDES():void{
-    this.users.sort((a,b):number => {
+    else 
+      this.users.sort((a,b):number => {
       if(a.id>b.id) return -1;
       if(a.id<b.id) return 1;
       return 0;

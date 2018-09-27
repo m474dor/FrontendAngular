@@ -41,6 +41,7 @@ export class AuthenticationService {
     	if (user) {
     		// store user details and jwt token in local storage to keep user logged in between page refreshes
       	localStorage.setItem('currentUser', JSON.stringify(user));
+        localStorage.setItem('admin', JSON.stringify('no'));
         this.home = "/homeUser";
     	}
     	return user;
@@ -56,6 +57,7 @@ export class AuthenticationService {
     .pipe(map(user => {
       if (user) {
         localStorage.setItem('currentUser', JSON.stringify(user));
+        localStorage.setItem('admin', JSON.stringify('si'));
         this.home = "/homeAdmin";
       }
       return user;
@@ -67,6 +69,7 @@ export class AuthenticationService {
         localStorage.removeItem('currentUser');
         localStorage.removeItem('currentRoute');        
         localStorage.removeItem('modificada');
+        localStorage.removeItem('admin');
 
         this.router.navigate(['login']);
     }

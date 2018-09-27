@@ -93,4 +93,11 @@
 </div>
 <button (click)="goBack()">Volver</button>
 </div>
-<app-mapa [url]={{this.kml}}></app-mapa>
+<app-mapa [id]="id"></app-mapa>
+<div *ngFor="let pho of urls">
+	<img [src]="pho" 
+	style="
+		width:100%;
+		height:400px;
+	">
+</div>
