@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthenticationService } from './_services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +8,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Rute.Ar';
-  user = localStorage.getItem('admin');
+  user: string;
+  admin: string;
+  constructor(private auth: AuthenticationService) {}
+  
+  ngOnInit() {
+    this.admin = localStorage.getItem('admin');
+    this.user = localStorage.getItem('user');
+  }
+
+  logout(): void {
+  	this.auth.logout();
+  }
 }

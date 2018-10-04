@@ -1,17 +1,17 @@
 <h3>RUTAS PUBLICAS</h3>
 <div>
-	<label>Actividad </label>
+	<label>Filtra Actividad al cambiar</label>
 	<select (change)="onActivity($event)">	
 		<option *ngFor="let act of activities" [ngValue]="act.name">{{act.name}}</option>
 	</select>
 	<label> | </label>
-	<label>Formato </label>
+	<label>Filtra Formato al cambiar </label>
 	<select (change)="onFormat($event)">
 		<option value="1">Circular</option>
 		<option value="0">Solo ida</option>
 	</select>
 	<label> | </label>
-	<label>Dificultad </label>
+	<label>Filtra Dificultad al cambiar </label>
 	<select (change)="onDifficulty($event)">	
 		<option *ngFor="let dif of difficulties" [ngValue]="dif.difficulty">{{dif.difficulty}}</option>
 	</select>

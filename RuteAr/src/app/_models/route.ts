@@ -17,4 +17,5 @@ export class Route {
 	activity: Activity;
 	owner: User;
 	points: string;
+	act: string;
 }

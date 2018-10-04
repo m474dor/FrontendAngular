@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { User } from '../_models/user';
 import { MessageService } from './message.service';
 
-const header = {
+/*const header = {
 'Content-Type': 'application/json',
 'Access-Control-Allow-Headers': 'Content-Type',
 'Access-Control-Allow-Methods': 'GET',
@@ -15,6 +15,9 @@ const header = {
 };
 const httpOptions = {
   headers: new HttpHeaders(header)
+};*/
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
 @Injectable({
@@ -31,7 +34,7 @@ export class AuthenticationService {
     ) { }
 
   login(username: string, password: string):Observable<User> {
-    //this.logout();
+    this.logout();
     this.user = new User;
     this.user.userName = username;
     this.user.password = password;
@@ -41,7 +44,7 @@ export class AuthenticationService {
     	if (user) {
     		// store user details and jwt token in local storage to keep user logged in between page refreshes
       	localStorage.setItem('currentUser', JSON.stringify(user));
-        localStorage.setItem('admin', JSON.stringify('no'));
+        localStorage.setItem('user', JSON.stringify('si'));
         this.home = "/homeUser";
     	}
     	return user;
@@ -49,7 +52,7 @@ export class AuthenticationService {
     }
 
   loginAdmin(username: string, password: string):Observable<User> {
-    //this.logout();
+    this.logout();
     this.user = new User;
     this.user.userName = username;
     this.user.password = password;
@@ -70,6 +73,7 @@ export class AuthenticationService {
         localStorage.removeItem('currentRoute');        
         localStorage.removeItem('modificada');
         localStorage.removeItem('admin');
+        localStorage.removeItem('user');
 
         this.router.navigate(['login']);
     }

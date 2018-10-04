@@ -104,6 +104,7 @@ export class NewRouteComponent implements OnInit {
     }else{
     	this.route.doneByCount=0;
     	this.route.rateAvg=0;
+      this.route.act=this.route.activity.name;
       this.routeService.register(this.route).subscribe(route => {
         this.route = route;
         this.mapPointService.register(this.selectedFile,route.id,

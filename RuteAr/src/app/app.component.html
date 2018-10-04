@@ -1,11 +1,12 @@
 <h1>{{title}}</h1>
 
 <nav>
-	<a routerLink="/newUser">Nuevo Usuario</a>
-	<a routerLink="/homeUser">Home Usuario</a>
-	<a routerLink="/homeAdmin">Home Admin</a>
-	<a routerLink="/login">Login User</a>
-	<a routerLink="/loginAdmin">Login Admin</a>
+	<button routerLink="/newUser"> - Nuevo Usuario - </button>
+	<!--<a routerLink="/homeUser">Home Usuario</a>
+	<a routerLink="/homeAdmin">Home Admin</a>-->
+	<button routerLink="/login"> - Login User - </button>
+	<button routerLink="/loginAdmin"> - Login Admin - </button>
+	<button (click)="logout()"> - Logout - </button>
 </nav>
 
 <router-outlet></router-outlet>

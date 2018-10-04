@@ -94,7 +94,7 @@ export class RouteDetailComponent implements OnInit {
 
   deleteRoute(): void{
   	if(!this.check()){
-  		this.routeService.delete(this.id).subscribe();
+  		this.routeService.delete(this.id).subscribe(data => this.router.navigate(['homeUser']));
   	}
   	else{
   		this.messageService.add('La ruta no se puede eliminar');
